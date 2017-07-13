@@ -1,0 +1,150 @@
+<div class="container">
+    
+    <br><br><br>
+  
+ <div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-pink">
+      <div class="panel-heading">
+        <h3 class="panel-title">Alta Producto</h3>
+      </div>
+      <div class="panel-body">
+  <form class="form-horizontal" id="formAltaInmueble" name="formAltaInmueble" role="form">
+    <div class="form-group" show-errors>
+      <div>
+        <label class="control-label" for="nombre">Descripción:</label>
+        <textarea type="text" placeholder="Describa la propiedad en un máximo de 500 caracteres" class="form-control" id="nombre" name="nombre" maxlength="500" ng-model="inmueble.descripcion" required></textarea>
+        <p class="help-block" ng-if="formAltaInmueble.nombre.$error.required">Debe ingresar una descripción</p>
+      </div>
+    </div>
+
+   <!-- <div class="form-group" show-errors>
+      <div>
+        <label class="control-label" for="direccion">Dirección:</label>
+        <input type="text" class="form-control" id="direccion" name="direccion" ng-model="inmueble.direccion" placeholder="Ingrese Dirección" required>
+        <p class="help-block" ng-if="formAltaInmueble.direccion.$error.required">Debe ingresar la dirección de la inmueble</p>
+      </div>
+    </div>
+    <div class="form-group" show-errors>
+      <div>
+        <label class="control-label" for="altura">Altura:</label>
+        <input type="number" class="form-control" id="altura" name="altura" ng-model="inmueble.altura" placeholder="Ingrese la Altura" required>
+        <p class="help-block" ng-if="formAltaInmueble.altura.$error.required">Debe ingresar la Altura de la dirección</p>
+      </div>
+    </div>-->
+    
+    <div class="form-group" show-errors>
+      <div>
+        <label class="control-label" for="precio">Precio:</label>
+        <input type="number" class="form-control" id="precio" name="precio" ng-model="inmueble.precio" placeholder="Precio" required>
+        <p class="help-block" ng-if="formAltaInmueble.precio.$error.required">Debe ingresar el Precio</p>
+      </div>
+    </div>
+   <!-- <div class="form-group">
+      <div>
+       <label class="control-label" for="sucursal">Sucursal:</label>
+       <select  class="form-control" id="selSucursal" ng-model="inmueble.idSucursal">
+       <option disabled selected value>Seleccione Sucursal</option>
+        <option ng-repeat="sucursal in listaSucursales" value="{{sucursal.id}}">
+            {{sucursal.nombre}}
+        </option>
+       </select>
+      </div>
+    </div>-->
+
+    <div class="form-group">
+      <div>
+       <label class="control-label" for="tipo">Tipo de Producto:</label>
+       <select  class="form-control" id="seltipo" ng-model="inmueble.tipo">
+          <option disabled selected value>Seleccione el tipo</option>
+          <option value="Bebida">Bebida</option>
+          <option value="Minuta">Minuta</option>
+          <option value="Postre">Postre</option>
+          <option value="Pizza">Pizza</option>
+          <option value="Empanada">Empanada</option>
+       </select>
+      </div>
+    </div>
+
+   <!--  <div class="form-group">
+      <div>
+       <label class="control-label" for="tipoOferta">Tipo Oferta:</label>
+       <select  class="form-control" id="seltipoOferta" ng-model="inmueble.tipoOferta">
+          <option disabled selected value>Seleccione el tipo de oferta</option>
+          <option value="Venta">Venta</option>
+          <option value="Alquiler">Alquiler</option>
+       </select>
+      </div>
+    </div>-->
+
+    <div class="form-group" show-errors>
+      <div>
+        <label class="control-label" for="ambientes">Cantidad:</label>
+        <input type="number" class="form-control" id="ambientes" name="ambientes" ng-model="inmueble.ambientes" placeholder="Stock" required>
+        <p class="help-block" ng-if="formAltaInmueble.ambientes.$error.required">Debe ingresar el stock</p>
+      </div>
+    </div>
+
+ <div class="form-group">
+    <div nv-file-drop="" uploader="subidorDeArchivos">
+        <div nv-file-over="" uploader="subidorDeArchivos" over-class="another-file-over-class" class="well my-drop-zone">
+            <center>Arrastre aquí las fotos del producto(max 5)</center>
+        </div>
+         <div class="error" ng-if="faltanFotos">Debe subir las fotos</div>
+    </div>
+ </div>
+
+
+
+<table style="width: auto;" class="table  table-striped  table-condensed" align="center">
+    <thead>
+        <tr>
+            <th >Imagen</th>
+            <th ng-show="subidorDeArchivos.isHTML5">Tamaño</th>
+            <th ng-show="subidorDeArchivos.isHTML5">Progreso</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in subidorDeArchivos.queue">
+            <td>
+              <div ng-show="subidorDeArchivos.isHTML5" >{{item._file.name}}</div>
+            </td>
+            <td ng-show="subidorDeArchivos.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+            <td ng-show="subidorDeArchivos.isHTML5">
+                <div class="progress" style="margin-bottom: 0;">
+                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                </div>
+            </td>
+            <td class="text-center">
+                <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+            </td>
+            <td nowrap>
+                <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                    <span class="glyphicon glyphicon-upload"></span> Subir
+                </button>
+                <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                    <span class="glyphicon glyphicon-trash"></span> Remover
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!--<div>
+    Progreso del cargado de las 3 fotos:
+    <div class="progress" style="">
+        <div class="progress-bar" role="progressbar" ng-style="{ 'width': subidorDeArchivos.progress + '%' }"></div>
+    </div>
+</div>-->
+    <div class="form-group">
+      <div>
+       <div class="margenfix">
+        <md-button ng-click="AltaInmueble()" class="send-button md-accent md-raised btn btn-success btn-block"><span class="glyphicon glyphicon-ok"></span> Crear Producto</md-button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

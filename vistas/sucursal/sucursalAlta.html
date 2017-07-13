@@ -1,0 +1,135 @@
+<div class="container">
+    
+<br><br><br>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="panel panel-green">
+        <div class="panel-heading">
+          <h3 class="panel-title">Nueva Sucursal</h3>
+        </div>
+        <div class="panel-body">
+  <form class="form-horizontal" id="formAltaSucursal" name="formAltaSucursal" role="form">
+
+    <div class="form-group" show-errors>
+      <div>
+        <label class="control-label" for="nombre">Nombre:</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" ng-model="sucursal.nombre" placeholder="Ingrese Nombre" required>
+        <p class="help-block" ng-if="formAltaSucursal.nombre.$error.required">Debe ingresar el nombre</p>
+      </div>
+    </div>
+
+    <div class="form-group" show-errors>
+      <div>
+        <label class="control-label" for="direccion">Dirección:</label>
+        <input type="text" class="form-control" id="direccion" name="direccion" ng-model="sucursal.direccion" placeholder="Ingrese Dirección" required>
+        <p class="help-block" ng-if="formAltaSucursal.direccion.$error.required">Debe ingresar la dirección</p>
+      </div>
+    </div>
+
+    <div class="form-group" show-errors>
+      <div>
+        <label class="control-label" for="altura">Altura:</label>
+        <input type="number" class="form-control" id="altura" name="altura" ng-model="sucursal.altura" placeholder="Ingrese la Altura" required>
+        <p class="help-block" ng-if="formAltaSucursal.altura.$error.required">Debe ingresar la Altura de la dirección</p>
+      </div>
+    </div> 
+
+   <div class="form-group" show-errors>
+      <div>
+        <label class="control-label" for="email">Email:</label>
+        <input type="email" class="form-control" id="email" name="email" ng-model="sucursal.email" placeholder="Ingrese su casilla de correo" required>
+        <p class="help-block" ng-if="formAltaSucursal.email.$error.required">Debe ingresar su correo</p>
+      </div>
+    </div>
+
+    <div class="form-group" show-errors>
+      <div>
+        <label class="control-label" for="telefono">Telefono:</label>
+        <input type="number" class="form-control" id="telefono" name="telefono" ng-model="sucursal.telefono" placeholder="Ingrese la telefono" required>
+        <p class="help-block" ng-if="formAltaSucursal.telefono.$error.required">Debe ingresar el numero de telefono</p>
+      </div>
+    </div>
+
+    <!--<div class="form-group">
+      <div>
+        <label class="control-label" for="encargado">Encargado:</label>
+       <select  class="form-control" id="selEncargado" ng-model="sucursal.idEncargado">
+       <option disabled selected value>Seleccione Encargado</option>
+        <option ng-repeat="encargado in listaPersonas" ng-if="encargado.perfil == 'encargado'" value="{{encargado.id}}">
+            {{encargado.nombre}} {{encargado.apellido}}
+        </option>
+       </select>
+      </div>
+    </div>-->
+
+   <div class="form-group">
+      <div nv-file-drop="" uploader="subidorDeArchivos">
+        <label class="control-label" for="encargado">Foto:</label>
+          <div nv-file-over="" uploader="subidorDeArchivos" over-class="another-file-over-class" class="well my-drop-zone">
+              <center>Arrastre aquí la foto</center>
+          </div>
+          <!-- <div class="error" ng-if="faltanFotos">Debe subir las 3 fotos de la sucursal</div>-->
+      </div>
+   </div>
+
+
+
+<table style="width: auto;" class="table  table-striped  table-condensed" align="center">
+    <thead>
+        <tr>
+            <th >Imagen</th>
+            <th ng-show="subidorDeArchivos.isHTML5">Tamaño</th>
+            <th ng-show="subidorDeArchivos.isHTML5">Progreso</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in subidorDeArchivos.queue">
+            <td>
+              <div ng-show="subidorDeArchivos.isHTML5" >{{item._file.name}}</div>
+            </td>
+            <td ng-show="subidorDeArchivos.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+            <td ng-show="subidorDeArchivos.isHTML5">
+                <div class="progress" style="margin-bottom: 0;">
+                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                </div>
+            </td>
+            <td class="text-center">
+                <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+            </td>
+            <td nowrap>
+                <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                    <span class="glyphicon glyphicon-upload"></span> Subir
+                </button>
+                <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                    <span class="glyphicon glyphicon-trash"></span> Remover
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!--<div>
+    Progreso del cargado de las 3 fotos:
+    <div class="progress" style="">
+        <div class="progress-bar" role="progressbar" ng-style="{ 'width': subidorDeArchivos.progress + '%' }"></div>
+    </div>
+</div>-->
+
+
+    <div class="form-group">
+      <div>
+       <div class="margenfix">
+        <md-button ng-click="AltaSucursal()" md-colors="{background: 'TEAL'}" class="send-button md-raised btn btn-success btn-block"><span class="glyphicon glyphicon-ok"></span> Crear Cliente</md-button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+</div>
+</div>
+</div>

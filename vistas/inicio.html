@@ -1,0 +1,346 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#miNavbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+      <a class="navbar-brand" href="#">Pizzeria Argenta</a>
+    </div>
+    <div id="miNavbar" class="collapse navbar-collapse">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li ng-if="flagLogueado">
+        <a href="#!/sucursal/grilla">Sucursales</a>
+      </li>
+
+      
+        <li ng-if="flagLogueado">
+                  <a  ng-if="ADMIN" href="#!/usuario/grillaUsuario">Usuarios</a>
+        </li>
+       
+      
+      
+      <li ng-if="flagLogueado" >
+        <a href="#!/inmueble/catalogo">Productos</a>
+      </li>
+
+      <li class="dropdown" ng-if="flagLogueado">
+          <a class="dropdown-toggle" data-toggle="dropdown"  ng-if="ADMIN" href="#"> Estadisticas<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#!/estadisticas/ventasporlocal">Ventas por cliente</a></li>
+            <li><a href="#!/estadisticas/ventasporproducto">Ventas por producto</a></li>
+            
+          </ul>
+        </li>
+
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li ng-if="!flagLogueado">
+        <md-button ng-click="goToRegistrarse()" class="send-button md-warn md-raised btn btn-danger navbar-btn"><span class="glyphicon glyphicon-pencil"></span> Registrarse</md-button>
+      </li>
+      <li ng-if="!flagLogueado">
+        <md-button ng-click="goToLogin()" class="send-button md-primary md-raised btn btn-success navbar-btn"><span class="glyphicon glyphicon-log-in"></span> Login</md-button>
+      </li>
+      <li class="dropdown" ng-if="flagLogueado">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-user"></span> 
+                <strong>{{usuarioLogueado.nombre}}</strong>
+                <span class="glyphicon glyphicon-chevron-down"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <div class="navbar-login">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <p class="text-center">
+                                    <span class="glyphicon glyphicon-user icon-size"></span>
+                                </p>
+                            </div>
+                            <div class="col-lg-8">
+                                <p class="text-left"><strong>{{usuarioLogueado.nombre}} {{usuarioLogueado.apellido}}</strong></p>
+                                <p class="text-left small">{{usuarioLogueado.email}}</p>
+                                <p class="text-left">
+                                    
+                                    <a ng-click="Actualizar()"  ng-if="ADMIN" class="btn btn-primary btn-block btn-sm">Actualizar Datos</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <div class="navbar-login navbar-login-session">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <p>
+                                    <a ng-click="Desloguear()" class="btn btn-danger btn-block">Cerrar Sesion</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    </div>
+  </div>
+</nav>
+
+ <!--md-toolbar>
+      <div class="md-toolbar-tools">
+        <div class="container-fluid">
+   
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#miNavbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+      <a class="navbar-brand" href="#">El Campito</a>
+   
+ 
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li ng-if="flagLogueado">
+        <a href="#!/sucursal/grilla">Sucursales</a>
+      </li>
+      <li ng-if="flagLogueado">
+        <a href="#!/usuario/alta">Usuarios</a>
+      </li>
+      <li ng-if="flagLogueado">
+        <a href="#!/inmueble/catalogo">Inmuebles</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li ng-if="!flagLogueado">
+        <md-button ng-click="goToRegistrarse()" class="send-button md-warn md-raised btn btn-danger navbar-btn"><span class="glyphicon glyphicon-pencil"></span> Registrarse</md-button>
+      </li>
+      <li ng-if="!flagLogueado">
+        <md-button ng-click="goToLogin()" class="send-button md-primary md-raised btn btn-success navbar-btn"><span class="glyphicon glyphicon-log-in"></span> Login</md-button>
+      </li>
+      <li class="dropdown" ng-if="flagLogueado">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-user"></span> 
+                <strong>{{usuarioLogueado.nombre}}</strong>
+                <span class="glyphicon glyphicon-chevron-down"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <div class="navbar-login">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <p class="text-center">
+                                    <span class="glyphicon glyphicon-user icon-size"></span>
+                                </p>
+                            </div>
+                            <div class="col-lg-8">
+                                <p class="text-left"><strong>{{usuarioLogueado.nombre}} {{usuarioLogueado.apellido}}</strong></p>
+                                <p class="text-left small">{{usuarioLogueado.email}}</p>
+                                <p class="text-left">
+                                    <a href="#" class="btn btn-primary btn-block btn-sm">Actualizar Datos</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <div class="navbar-login navbar-login-session">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <p>
+                                    <a ng-click="Desloguear()" class="btn btn-danger btn-block">Cerrar Sesion</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+   
+  </div>
+      </div>
+    </md-toolbar-->
+
+<!-- Modal Login-->
+  <div class="modal fade" id="loginModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class=" glyphicon glyphicon-log-in"></span> Login</h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+        <div class="error" ng-if="loginIncorrecto">El email o password ingresados no son correctos</div>
+          <form role="form" name="formLogin" id="loginForm">
+<!--
+        <md-input-container>
+            <label>Email</label>
+            <input name="favoriteColor" ng-model="usuarioLogueado.email" required>
+            <div ng-messages="formLogin.email.$error.$error">
+              <div ng-message="required"> </div>
+            </div>
+          </md-input-container>
+
+-->
+            <div class="form-group" show-errors>
+              <label for="usrname"><span class="glyphicon glyphicon-envelope"></span> Email</label>
+              <input type="email" class="form-control" id="usrname" name="email" ng-model="usuarioLogueado.email" placeholder="Enter email" required>
+              <p class="help-block" ng-if="formLogin.email.$error.required">Debe ingresar su email</p>
+              <p class="help-block" ng-if="formLogin.email.$error.email">El email ingresado no es válido</p>
+            </div>
+            <div class="form-group" show-errors>
+              <label for="psw"><span class="glyphicon glyphicon-lock"></span> Password</label>
+              <input type="password" class="form-control" id="psw" name="password" ng-model="usuarioLogueado.password" placeholder="Enter password" required>
+              <p class="help-block" ng-if="formLogin.password.$error.required">Debe ingresar su password</p>
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" value="" checked>Remember me</label>
+            </div>
+             <div class="margenfix">
+              <md-button ng-click="Login()" class="send-button md-primary md-raised btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</md-button>
+              </div>
+              <!--<button class="btn btn-link" ng-click="resetErrores()">Reset</button>-->
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button ng-click="DatosAdmin()" class="btn btn-primary btn-default pull-left" ><span ></span> Admin</button>
+          <button ng-click="DatosEncargado()"  class="btn btn-primary btn-default pull-left" ><span ></span> Encargado</button>
+          <button ng-click="DatosEmpleado()" class="btn btn-primary btn-default pull-left" ><span ></span> Empleado</button>
+          <br><br>
+          <p>No posee una cuenta? <a href="#" ng-click="goToRegistrarse()">Registrese</a></p>
+          <p>Olvidó su <a href="#">Password?</a></p>
+        </div>
+      </div>
+      
+    </div>
+  </div> 
+</div>
+
+
+  <div class="modal fade" id="registrarseModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-pencil"></span> Registrarse</h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+        <div class="error" ng-if="registroIncorrecto">El registro no fué exitoso, reintente nuevamente.</div>
+          <form role="form" name="formRegistrarse" id="loginForm">
+          <div class="form-group" show-errors>
+              <label for="nombre"><span class="glyphicon glyphicon-user"></span> Nombre</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" ng-model="usuarioLogueado.nombre" placeholder="Ingrese Nombre" required>
+              <spam class="help-block" ng-if="formRegistrarse.nombre.$error.required">Debe ingresar su nombre</span>
+            </div>
+            <div class="form-group" show-errors>
+              <label for="apellido"><span class="glyphicon glyphicon-user"></span> Apellido</label>
+              <input type="text" class="form-control" id="apellido" name="apellido" ng-model="usuarioLogueado.apellido" placeholder="Ingrese Apellido" required>
+              <p class="help-block" ng-if="formRegistrarse.apellido.$error.required">Debe ingresar su apellido</p>
+            </div>
+            <div class="form-group" show-errors>
+              <label for="usrname"><span class="glyphicon glyphicon-envelope"></span> Email</label>
+              <input type="email" class="form-control" id="usrname" name="email" ng-model="usuarioLogueado.email" placeholder="Ingrese Email" required>
+              <p class="help-block" ng-if="formRegistrarse.email.$error.required">Debe ingresar su email</p>
+              <p class="help-block" ng-if="formRegistrarse.email.$error.email">El email ingresado no es válido</p>
+            </div>
+            <div class="form-group" show-errors>
+              <label for="psw"><span class="glyphicon glyphicon-lock"></span> Password</label>
+              <input type="password" class="form-control" id="psw" name="password" ng-model="usuarioLogueado.password" placeholder="Ingrese Password" required>
+              <p class="help-block" ng-if="formRegistrarse.password.$error.required">Debe ingresar su password</p>
+            </div>
+            <div class="form-group" show-errors>
+              <label for="psw2"><span class="glyphicon glyphicon-lock"></span> Password</label>
+              <input type="password" class="form-control" id="psw2" name="password2" ng-model="usuarioLogueado.password2" placeholder="Repetir Password" required>
+              <p class="help-block" ng-if="formRegistrarse.password.$error.required">Debe ingresar su password</p>
+            </div>
+            <div class="margenfix">
+              <md-button ng-click="Registrarse()" class="send-button md-warn md-raised btn btn-primary btn-block"><span class="glyphicon glyphicon-pencil"></span> Registrarse</md-button>
+            </div>
+              <!--<button class="btn btn-link" ng-click="resetErrores()">Reset</button>-->
+          </form>
+        </div>
+        <div class="modal-footer">
+     
+
+        </div>
+      </div>
+      
+    </div>
+  </div> 
+</div>
+
+
+<div class="modal fade" id="ModifModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-pencil"></span> Registrarse</h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+        <div class="error" ng-if="registroIncorrecto">El registro no fué exitoso, reintente nuevamente.</div>
+          <form role="form" name="formRegistrarse" id="loginForm">
+          <div class="form-group" show-errors>
+              <label for="nombre"><span class="glyphicon glyphicon-user"></span> Nombre</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" ng-model="usuarioLogueado.nombre" placeholder=$scope.usuarioLogueado.nombre required>
+              <spam class="help-block" ng-if="formRegistrarse.nombre.$error.required">Debe ingresar su nombre</span>
+            </div>
+            <div class="form-group" show-errors>
+              <label for="apellido"><span class="glyphicon glyphicon-user"></span> Apellido</label>
+              <input type="text" class="form-control" id="apellido" name="apellido" ng-model="usuarioLogueado.apellido" placeholder="Ingrese Apellido" required>
+              <p class="help-block" ng-if="formRegistrarse.apellido.$error.required">Debe ingresar su apellido</p>
+            </div>
+            <div class="form-group" show-errors>
+              <label for="usrname"><span class="glyphicon glyphicon-envelope"></span> Email</label>
+              <input type="email" class="form-control" id="usrname" name="email" ng-model="usuarioLogueado.email" placeholder="Ingrese Email" required>
+              <p class="help-block" ng-if="formRegistrarse.email.$error.required">Debe ingresar su email</p>
+              <p class="help-block" ng-if="formRegistrarse.email.$error.email">El email ingresado no es válido</p>
+            </div>
+            <div class="form-group" show-errors>
+              <label for="psw"><span class="glyphicon glyphicon-lock"></span> Password</label>
+              <input type="password" class="form-control" id="psw" name="password" ng-model="usuarioLogueado.password" placeholder="Ingrese Password" required>
+              <p class="help-block" ng-if="formRegistrarse.password.$error.required">Debe ingresar su password</p>
+            </div>
+            <div class="form-group" show-errors>
+              <label for="psw2"><span class="glyphicon glyphicon-lock"></span> Password</label>
+              <input type="password" class="form-control" id="psw2" name="password2" ng-model="usuarioLogueado.password2" placeholder="Repetir Password" required>
+              <p class="help-block" ng-if="formRegistrarse.password.$error.required">Debe ingresar su password</p>
+            </div>
+            <div class="margenfix">
+              <md-button ng-click="Modificar()" class="send-button md-warn md-raised btn btn-primary btn-block"><span class="glyphicon glyphicon-pencil"></span> Registrarse</md-button>
+            </div>
+              <!--<button class="btn btn-link" ng-click="resetErrores()">Reset</button>-->
+          </form>
+        </div>
+        <div class="modal-footer">
+     
+
+        </div>
+      </div>
+      
+    </div>
+  </div> 
+
+
+
+
+<!-- Modal Loading -->
+<div class="modal fade" id="loadingModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 15%; overflow-y: visible; display: none;"><div class="modal-dialog modal-m">
+<div class="modal-content">
+<div class="modal-header">
+<h3 style="margin:0;">Loading...</h3>
+</div><div class="modal-body">
+<div class="progress progress-striped active" style="margin-bottom:0;">
+<div class="progress-bar" style="width: 100%">
+</div></div></div></div></div></div>

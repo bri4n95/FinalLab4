@@ -1,0 +1,92 @@
+<div class="container">
+    
+    <br><br><br>
+  
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Alta Usuario</h3>
+        </div>
+        <div class="panel-body">
+  <form class="form-horizontal" id="formAltaUsuario" name="formAltaUsuario" role="form">
+    <div class="form-group" show-errors>
+      <div>
+        <label class="control-label" for="nombre">Nombre:</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" ng-model="usuario.nombre" placeholder="Ingrese Nombre" required>
+        <p class="help-block" ng-if="formAltaUsuario.nombre.$error.required">Debe ingresar el Nombre</p>
+      </div>
+    </div>
+    <div class="form-group" show-errors>
+      <div>
+        <label class="control-label" for="apellido">Apellido:</label>
+        <input type="text" class="form-control" id="apellido" name="apellido" ng-model="usuario.apellido" placeholder="Ingrese Apellido" required>
+        <p class="help-block" ng-if="formAltaUsuario.apellido.$error.required">Debe ingresar el Apellido</p>
+      </div>
+    </div>
+    <div class="form-group" show-errors>
+      <div>
+        <label class="control-label" for="telefono">Tel:</label>
+        <input type="number" class="form-control" id="telefono" name="telefono"ng-model="usuario.telefono" placeholder="Telefono" required>
+        <p class="help-block" ng-if="formAltaUsuario.telefono.$error.required">Debe ingresar el Telefono</p>
+      </div>
+    </div>
+    <div class="form-group" show-errors>
+      <div>
+        <label class="control-label" for="email">Email:</label>
+        <input type="email" class="form-control" id="email" name="email" ng-model="usuario.email" placeholder="Email" required>
+        <p class="help-block" ng-if="formAltaUsuario.email.$error.required">Debe ingresar el Email</p>
+        <p class="help-block" ng-if="formAltaUsuario.email.$error.email">El Email ingresado no es válido</p>
+      </div>
+    </div>
+    <div class="form-group" show-errors>
+      <div>
+        <label class="control-label" for="password">Password:</label>
+        <input type="password" class="form-control" id="password" name="password" ng-model="usuario.password" placeholder="Ingrese Password" required>
+        <p class="help-block" ng-if="formAltaUsuario.password.$error.required">Debe ingresar el Password</p>
+      </div>
+    </div>
+    <div class="form-group" show-errors>
+      <div>
+        <label class="control-label" for="password2">RePassword:</label>
+        <input type="password" class="form-control" id="password2" name="password2" ng-model="usuario.password2" placeholder="Repetir Password" required>
+        <p class="help-block" ng-if="formAltaUsuario.password2.$error.required">Debe ingresar el Password</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <div>
+        <label class="control-label" for="perfil">Perfil:</label>
+        <select class="form-control" ng-model="usuario.perfil">
+          <option disabled selected value>Seleccione el Perfil</option>
+          <option value="encargado">Encargado</option>
+          <option value="empleado">Empleado</option>
+          
+          <option value="admin">Administrador</option>
+        </select>
+      </div>
+    </div>
+   <!-- <div class="form-group">
+      <div>
+       <label class="control-label" for="sucursal">Sucursal Asignada:</label>
+       <select  class="form-control" id="selEncargado" ng-model="usuario.idLocal">
+       <option disabled selected value>Seleccione Sucursal</option>
+        <option ng-repeat="sucursal in listaSucursales" value="{{sucursal.id}}">
+            {{sucursal.nombre}}
+        </option>
+       </select>
+      </div>
+    </div>-->
+    <div class="form-group">
+      <div>
+       <div class="margenfix">
+        <md-button ng-click="CrearUsuario()" class="send-button md-primary md-raised btn btn-success btn-block"><span class="glyphicon glyphicon-ok"></span> Crear Usuario</md-button>
+       </div>
+      </div>
+    </div>
+  </form>
+  </div>
+</div>
+</div>
+</div>
+</div>
+      

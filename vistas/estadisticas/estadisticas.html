@@ -1,0 +1,36 @@
+<div class="container">
+    
+    <br><br><br><br>
+    
+<!--div class="margenfix">
+  <md-button class="send-button md-primary md-raised btn btn-success btn-block" ng-click="ventasPorLocal()"><span ></span> ventas por local</md-button>
+  <md-button class="send-button md-primary md-raised btn btn-success btn-block" ng-click="ventasPorEmpleado()"><span ></span> ventas por empleado</md-button>
+</div-->
+
+<form class="form-horizontal" ng-if="mostrarSelect">
+	<div class="form-group">
+	    <div class="col-lg-6">
+	    <label class="control-label col-sm-3" for="sucursal">Sucursal:</label>
+	        <div class="input-group my-group"> 
+
+	           <select  class="form-control" id="selSucursal" ng-model="idSucursal">
+	                        <option disabled selected value>Seleccione Producto</option>
+			        <option ng-repeat="inmueble in listaInmuebles" value="{{inmueble.id}}">
+			            {{inmueble.descripcion}}
+			        </option>
+	            </select> 
+	            <span class="input-group-btn">
+			      	<button class="btn btn-primary btn-default pull-left" ng-click="ventasPorEmpleado(idSucursal)" type="submit">CARGAR</button>
+			    </span>
+	        </div>
+	    </div>
+	</div>
+</form>
+
+
+<md-card>
+<div id="miGrafico"></div>
+
+</md-card>
+
+</div>

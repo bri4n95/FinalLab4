@@ -1,0 +1,105 @@
+<div class="container"> 
+<br><br><br><br><br>
+<div id="divAnimation">
+ 
+ <div >
+	   
+	        <div class="input-group my-group"> 
+ <label class="control-label col-sm-3" for="sucursal">Sucursal:</label>
+	           <select  class="form-control" id="selSucursal" ng-model="IdSucu"  ng-dropdown required>
+	           <p class="help-block" ng-if="form-control.selSucursal.$error.required">Debe ingresar una sucursal</p>
+                          <option disabled selected value>Seleccione Sucursal</option>
+			        <option ng-repeat="sucursal in listaSucursales" value="{{sucursal.id}}">
+			            {{sucursal.nombre}}
+			        </option>
+	            </select> 
+	            <span class="input-group-btn">
+			      </span>	<button class="btn btn-primary btn-default pull-left" ng-click="Seleccionar(this.value)" type="submit">Seleccione</button>
+			   
+	        </div>
+	    </div>
+    
+ 
+ 
+ 
+ <md-content class="md-padding" >
+      <md-card ng-class="{'Frm animated bounceInLeft' : $index %2 == 0, 'Frm animated bounceInRight' : $index %2 != 0}" layout="row" layout-sm="column" ng-repeat="inmueble in listaInmuebles | startFrom:currentPage*pageSize | limitTo:pageSize"> 
+          <div flex-gt-sm="33" layout-align="center center" layout="column">
+        	<jk-carousel
+		        data="inmueble.fotosArray"
+		        item-template-url="'./vistas/inmueble/item-template.html'"
+		        auto-slide="true" 
+		        auto-slide-time="3000"
+		        max-width="800" 
+		        max-height="500" >
+	        </jk-carousel>
+	      </div>
+       <div layout="column" flex>
+        <md-card-content flex>
+   			<h2 class="md-title text-success">{{inmueble.descripcion}} ({{inmueble.tipo}})  {{inmueble.precio}}$</h2>
+          <p class="text-success">
+            stock: {{inmueble.ambientes}}
+          </p>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+
+          <md-button ng-click="reservarInmueble(inmueble)" ng-if="LOCAL"  class="send-button md-accent md-raised" id="compra">COMPRAR</md-button>
+        
+        <php>
+
+         
+        </php>
+        
+        <md-button ng-click="Borrar(inmueble)"  ng-if="ADMIN" class="send-button md-accent md-raised" id="borrar">borrar</md-button>
+         
+        </md-card-actions>
+       </div>
+      </md-card>
+  </md-content>
+<center>
+  <md-button class="send-button md-primary md-raised" ng-disabled="currentPage == 0" ng-click="backPage()">
+        << Previous
+    </md-button>
+    {{currentPage+1}}/{{numberOfPages()}}
+    <md-button class="send-button md-primary md-raised" ng-disabled="currentPage >= listaInmuebles.length/pageSize - 1" ng-click="nextPage()">
+        Next >>
+    </md-button>
+    </center>
+</div>
+</div>
+
+   <!-- MapaModal -->
+<div class="container">
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">{{ModalHeader}}</h4>
+          </div>
+          <div class="modal-body">    
+            <ng-map center="{{mapa.latitud}}, {{mapa.longitud}}" ng-model="miMapa" id="miMapaModal">
+
+        </ng-map>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fin MapaModal -->
+
+<!-- Modal Loading -->
+<div class="modal fade" id="cargandoCatalogoModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 15%; overflow-y: visible; display: none;"><div class="modal-dialog modal-m">
+<div class="modal-content">
+<div class="modal-header">
+<h3 style="margin:0;">Cargando Catálogo...</h3>
+</div><div class="modal-body">
+<div class="progress progress-striped active" style="margin-bottom:0;">
+<div class="progress-bar progress-bar-success" style="width: 100%">
+</div></div></div></div></div></div>
+</div>

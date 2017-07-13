@@ -1,0 +1,43 @@
+<div class="container">
+    
+    <br><br>  
+    <div class="page-header">
+    <h1>Listado de Sucursales</h1>      
+  </div>
+    <div ui-grid="gridOptions" class="myGrid" ui-grid-pagination ui-grid-exporter ui-grid-selection ui-grid-resize-columns>
+    </div>
+
+	<div class="container">
+	  <!-- Modal -->
+	  <div class="modal fade" id="myModal" role="dialog">
+	    <div class="modal-dialog">
+	    
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">{{ModalHeader}}</h4>
+	        </div>
+	        <div class="modal-body">   	
+	          <ng-map center="{{mapa.latitud}}, {{mapa.longitud}}" ng-model="miMapa" id="miMapaModal">
+
+			  </ng-map>
+	        </div>
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Cerrar</button>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+<!-- Modal Loading -->
+<div class="modal fade" id="cargandoGrillaModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top: 15%; overflow-y: visible; display: none;"><div class="modal-dialog modal-m">
+<div class="modal-content">
+<div class="modal-header">
+<h3 style="margin:0;">Cargando Grilla...</h3>
+</div><div class="modal-body">
+<div class="progress progress-striped active" style="margin-bottom:0;">
+<div class="progress-bar progress-bar-success" style="width: 100%">
+</div></div></div></div></div></div>
+</div>
